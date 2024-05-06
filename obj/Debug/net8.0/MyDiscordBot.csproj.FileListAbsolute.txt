@@ -22,3 +22,5 @@ D:\PROJECTS\C#\MyDiscordBot\bin\Debug\net8.0\DSharpPlus.CommandsNext.dll
 D:\PROJECTS\C#\MyDiscordBot\bin\Debug\net8.0\DSharpPlus.Interactivity.dll
 D:\PROJECTS\C#\MyDiscordBot\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 D:\PROJECTS\C#\MyDiscordBot\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\PROJECTS\C#\MyDiscordBot\bin\Debug\net8.0\DSharpPlus.SlashCommands.dll
+D:\PROJECTS\C#\MyDiscordBot\obj\Debug\net8.0\MyDiscordBot.sourcelink.json

@@ -1,5 +1,7 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Interactivity.Extensions;
 using MyDiscordBot.commands;
 using MyDiscordBot.config;
 
@@ -7,8 +9,8 @@ namespace AnxisBot
 {
     class Bot
     {
-        private static DiscordClient Client { get; set; }
-        private static CommandsNextExtension Commands { get; set; }
+        public static DiscordClient Client { get; set; }
+        public static CommandsNextExtension Commands { get; set; }
         static async Task Main(string[] args)
         {
             var jsonReader = new JSONReader();
@@ -24,6 +26,11 @@ namespace AnxisBot
 
             Client = new DiscordClient(discordConfig);
 
+            Client.UseInteractivity(new InteractivityConfiguration()
+            {
+                Timeout = TimeSpan.FromSeconds(15)
+            });
+
             Client.Ready += Client_Ready;
             Client.GuildMemberAdded += MemberAddedHandler;
 
@@ -37,7 +44,8 @@ namespace AnxisBot
 
             Commands = Client.UseCommandsNext(commandsConfig);
 
-            Commands.RegisterCommands<TestCommands>();
+            //Commands.RegisterCommands<TestCommands>();
+            Commands.RegisterCommands<AdministrativeСommands>(); 
 
             await Client.ConnectAsync();
             await Task.Delay(-1);

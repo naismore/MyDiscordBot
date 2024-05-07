@@ -1,6 +1,8 @@
-﻿using DSharpPlus.CommandsNext;
+﻿using AnxisBot;
+using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using DSharpPlus.Interactivity.Extensions;
 
 namespace MyDiscordBot.commands
 {
@@ -38,6 +40,37 @@ namespace MyDiscordBot.commands
                 Color = DiscordColor.Red,
             };
             await ctx.Channel.SendMessageAsync(message);
+        }
+
+        [Command("voting")]
+        public async Task Voting(CommandContext ctx, string option1, string option2, string option3, string option4, [RemainingText] string votingTitle)
+        {
+            var interactivity = Bot.Client.GetInteractivity();
+
+            DiscordEmoji[] emojiOptions = { DiscordEmoji.FromName(Bot.Client, ":one:"),
+                                            DiscordEmoji.FromName(Bot.Client, ":two:"),
+                                            DiscordEmoji.FromName(Bot.Client, ":three:"),
+                                            DiscordEmoji.FromName(Bot.Client, ":four:") };
+
+            string optionDescribtion = $"{emojiOptions[0]} | {option1} \n" +
+                                        $"{emojiOptions[1]} | {option2} \n" +
+                                        $"{emojiOptions[2]} | {option3} \n" +
+                                        $"{emojiOptions[3]} | {option4} \n";
+
+
+            var votingMessage = new DiscordEmbedBuilder
+            {
+                Color = DiscordColor.Red,
+                Title = votingTitle,
+                Description = optionDescribtion,
+            };
+
+            var sentVoting = await ctx.Channel.SendMessageAsync(embed: votingMessage);
+
+            foreach (var emoji in emojiOptions)
+            {
+                await sentVoting.CreateReactionAsync(emoji);
+            }
         }
     }
 }

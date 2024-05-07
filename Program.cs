@@ -44,8 +44,8 @@ namespace AnxisBot
 
             Commands = Client.UseCommandsNext(commandsConfig);
 
-            //Commands.RegisterCommands<TestCommands>();
-            Commands.RegisterCommands<AdministrativeСommands>(); 
+            Commands.RegisterCommands<TestCommands>();
+            //Commands.RegisterCommands<AdministrativeСommands>(); 
 
             await Client.ConnectAsync();
             await Task.Delay(-1);

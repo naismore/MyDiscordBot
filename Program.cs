@@ -2,8 +2,10 @@
 using DSharpPlus.CommandsNext;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.SlashCommands;
 using MyDiscordBot.commands;
 using MyDiscordBot.config;
+using MyDiscordBot.slash;
 
 namespace AnxisBot
 {
@@ -43,8 +45,10 @@ namespace AnxisBot
             };
 
             Commands = Client.UseCommandsNext(commandsConfig);
+            var slashCommandsConfig = Client.UseSlashCommands();
 
             Commands.RegisterCommands<TestCommands>();
+            slashCommandsConfig.RegisterCommands<BasicSL>();
             //Commands.RegisterCommands<AdministrativeСommands>(); 
 
             await Client.ConnectAsync();

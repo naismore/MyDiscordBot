@@ -45,9 +45,11 @@ namespace AnxisBot
             };
 
             Commands = Client.UseCommandsNext(commandsConfig);
+
             var slashCommandsConfig = Client.UseSlashCommands();
 
-            Commands.RegisterCommands<TestCommands>();
+
+            //Commands.RegisterCommands<TestCommands>();
             slashCommandsConfig.RegisterCommands<BasicSL>();
             //Commands.RegisterCommands<AdministrativeСommands>(); 
 
@@ -55,9 +57,9 @@ namespace AnxisBot
             await Task.Delay(-1);
         }
 
-        private static Task MemberAddedHandler(DiscordClient sender, DSharpPlus.EventArgs.GuildMemberAddEventArgs args)
+        private static async Task MemberAddedHandler(DiscordClient sender, DSharpPlus.EventArgs.GuildMemberAddEventArgs args)
         {
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         private static Task Client_Ready(DiscordClient sender, DSharpPlus.EventArgs.ReadyEventArgs args)

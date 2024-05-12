@@ -1,5 +1,6 @@
 ﻿using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
+using MyDiscordBot.serverconfig;
 
 namespace MyDiscordBot.slash
 {
@@ -24,6 +25,16 @@ namespace MyDiscordBot.slash
             };
 
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(welcomeMessageNotification));
+        }
+        [SlashCommand("save", "Save server config to JSON file")]
+        public async Task SaveServerConfig(InteractionContext ctx)
+        {
+            ServerConfig sc = new ServerConfig();
+
+            await sc.SetWelcomeMessage("Hello!");
+            await sc.SetWelcomeRole(123);
+            await sc.SaveConfigFile(ctx.Guild.Id);
+            await ctx.CreateResponseAsync(DSharpPlus.InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent("Конфиг сервера был сохранен"));
         }
     }
 }
